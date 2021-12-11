@@ -29,14 +29,11 @@ public class BottomCategoryController {
 	private BottomCategoryService bottomCategoryService;
 	
 	
-	
 	@GetMapping(value="/middle-category/{middleId}/bottom-category")
 	public JsonObject selectBottomCategoryListAll (@PathVariable("middleId") Long middleId, @ModelAttribute("params") BottomCategoryDTO params) {
 
 		JsonObject resultObject = new JsonObject();
 		try {
-			
-			logger.info("####### param : " + params);
 			
 			resultObject = selectBottomCategory(params);
 		} catch (Exception e) {
