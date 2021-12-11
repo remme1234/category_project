@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.musinsa.category.mapper.BrandCodeMstMapper">
+
+
+	<select id="selectBrandCodeMst" parameterType="com.musinsa.category.domain.BrandCodeMstDTO" resultType="map">
+		<![CDATA[
+		SELECT BRAND_ID
+			 , BRAND_NAME
+			 , CREATOR
+			 , CREATE_DTTM
+			 , UPDATER
+			 , UPDATE_DTTM
+		FROM BRAND_CODE_MST
+		WHERE 1=1
+		]]>
+		<if test="brandId != null and brandId != ''">
+			AND BRAND_ID = #{brandId}
+		</if>		
+	</select>
+	
+	
+	<insert id="insertBrandCodeMst" parameterType="com.musinsa.category.domain.BrandCodeMstDTO">
+		INSERT INTO BRAND_CODE_MST (
+			 BRAND_NAME
+			 , CREATOR
+			 , CREATE_DTTM
+			 , UPDATER
+			 , UPDATE_DTTM
+			) VALUES (
+			  #{brandName}
+			  , 'SYSTEM'
+			  , PARSEDATETIME (now(),'yyyy-MM-dd hh:mm:ss.SSS')
+			  , 'SYSTEM'
+			  , PARSEDATETIME (now(),'yyyy-MM-dd hh:mm:ss.SSS')
+			)
+	</insert> 
+	
+	
+	<update id="updateBrandCodeMst" parameterType="com.musinsa.category.domain.BrandCodeMstDTO">
+		UPDATE BRAND_CODE_MST
+		SET BRAND_NAME = #{brandName}
+			, UPDATER = 'SYSTEM'
+			, UPDATE_DTTM = PARSEDATETIME (now(),'yyyy-MM-dd hh:mm:ss.SSS')
+		WHERE BRAND_ID = #{brandId}
+		
+	</update>
+	
+	
+	<delete id="deleteBrandCodeMst" parameterType="long">
+		DELETE FROM BRAND_CODE_MST
+		WHERE BRAND_ID = #{brandId}
+	</delete>
+
+
+</mapper>

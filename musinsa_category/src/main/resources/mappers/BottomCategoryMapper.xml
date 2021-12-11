@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.musinsa.category.mapper.BottomCategoryMapper">
+
+	<select id="selectBottomCategory" parameterType="com.musinsa.category.domain.BottomCategoryDTO" resultType="map">
+		<![CDATA[
+		SELECT BOTTOM_ID
+			 , BOTTOM_NAME
+			 , MIDDLE_ID
+			 , BRAND_ID
+			 , BEST_ITEM
+			 , CREATOR
+			 , CREATE_DTTM
+			 , UPDATER
+			 , UPDATE_DTTM
+		FROM BOTTOM_CATEGORY
+		WHERE 1=1
+		]]>
+			<if test="middleId != null and middleId != ''">
+				AND MIDDLE_ID = #{middleId}
+			</if>
+			<if test="bottomId != null and bottomId != ''">
+				AND BOTTOM_ID = #{bottomId}
+			</if>		
+			<if test="brandId != null and brandId != ''">
+				AND BRAND_ID = #{brandId}
+			</if>		
+			<if test="bestItem == true">
+				AND BEST_ITEM = #{bestItem}
+			</if>		
+		<![CDATA[
+		]]>
+	</select>
+	
+	<insert id="insertBottomCategory" parameterType="com.musinsa.category.domain.BottomCategoryDTO">
+		INSERT INTO BOTTOM_CATEGORY (
+			 BOTTOM_NAME
+			 , MIDDLE_ID
+			 , BRAND_ID
+			 , BEST_ITEM
+			 , CREATOR
+			 , CREATE_DTTM
+			 , UPDATER
+			 , UPDATE_DTTM
+			) VALUES (
+			  #{bottomName}
+			  , #{middleId}
+			  , #{brandId}
+			 <choose>
+				<when test="bestItem == true">
+				, true
+				</when>
+			 	<otherwise>
+			 	, false
+			 	</otherwise>
+			 </choose>
+			  , 'SYSTEM'
+			  , PARSEDATETIME (now(),'yyyy-MM-dd hh:mm:ss.SSS')
+			  , 'SYSTEM'
+			  , PARSEDATETIME (now(),'yyyy-MM-dd hh:mm:ss.SSS')
+			)
+	</insert> 
+	
+	
+	
+	<update id="updateBottomCategory" parameterType="com.musinsa.category.domain.BottomCategoryDTO">
+		UPDATE BOTTOM_CATEGORY
+		SET BOTTOM_NAME = #{bottomName}
+			, UPDATER = 'SYSTEM'
+			, UPDATE_DTTM = PARSEDATETIME (now(),'yyyy-MM-dd hh:mm:ss.SSS')
+			<if test="middleId != null and middleId != ''">
+			, MIDDLE_ID = #{middleId}
+			</if>
+			<if test="brandId != null and brandId != ''">
+			, BRAND_ID = #{brandId}
+			</if>
+			<if test="bestItem != null">
+			, BEST_ITEM = #{bestItem}
+			</if>
+		WHERE BOTTOM_ID = #{bottomId}
+		
+	</update>
+	
+	
+	<delete id="deleteBottomCategory" parameterType="long">
+		DELETE FROM BOTTOM_CATEGORY
+		WHERE BOTTOM_ID = #{bottomId}
+	</delete>
+
+</mapper>

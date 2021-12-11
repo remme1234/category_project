@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.musinsa.category.mapper.MiddleCategoryMapper">
+
+	<select id="selectMiddleCategory" parameterType="com.musinsa.category.domain.MiddleCategoryDTO" resultType="map">
+		<![CDATA[
+		SELECT MIDDLE_ID
+			 , MIDDLE_NAME
+			 , MIDDLE_ID
+			 , CREATOR
+			 , CREATE_DTTM
+			 , UPDATER
+			 , UPDATE_DTTM
+		FROM MIDDLE_CATEGORY
+		WHERE TOP_ID = #{topId}
+		]]>
+			<if test="middleId != null and middleId != ''">
+			AND MIDDLE_ID = #{middleId}
+			</if>		
+	</select>
+	
+	<insert id="insertMiddleCategory" parameterType="com.musinsa.category.domain.MiddleCategoryDTO">
+		INSERT INTO MIDDLE_CATEGORY (
+			 MIDDLE_NAME
+			 , TOP_ID
+			 , CREATOR
+			 , CREATE_DTTM
+			 , UPDATER
+			 , UPDATE_DTTM
+			) VALUES (
+			  #{middleName}
+			  , #{topId}
+			  , 'SYSTEM'
+			  , PARSEDATETIME (now(),'yyyy-MM-dd hh:mm:ss.SSS')
+			  , 'SYSTEM'
+			  , PARSEDATETIME (now(),'yyyy-MM-dd hh:mm:ss.SSS')
+			)
+	</insert> 
+	
+	
+	
+	<update id="updateMiddleCategory" parameterType="com.musinsa.category.domain.MiddleCategoryDTO">
+		UPDATE MIDDLE_CATEGORY
+		SET MIDDLE_NAME = #{middleName}
+			, UPDATER = 'SYSTEM'
+			, UPDATE_DTTM = PARSEDATETIME (now(),'yyyy-MM-dd hh:mm:ss.SSS')
+			<if test="topId != null and topId != ''">
+			, TOP_ID = #{topId}
+			</if>
+		WHERE MIDDLE_ID = #{middleId}
+		
+	</update>
+	
+	
+	<delete id="deleteMiddleCategory" parameterType="long">
+		DELETE FROM MIDDLE_CATEGORY
+		WHERE MIDDLE_ID = #{middleId}
+	</delete>
+
+</mapper>

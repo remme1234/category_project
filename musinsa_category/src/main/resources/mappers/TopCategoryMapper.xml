@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.musinsa.category.mapper.TopCategoryMapper">
+
+	<select id= "selectTopCategory" parameterType="com.musinsa.category.domain.TopCategoryDTO" resultType="map">
+		<![CDATA[
+		SELECT TOP_ID
+			 , TOP_NAME
+			 , CREATOR
+			 , CREATE_DTTM
+			 , UPDATER
+			 , UPDATE_DTTM
+		FROM TOP_CATEGORY
+		WHERE 1=1
+		]]>
+		<if test="topId != null">
+		AND TOP_ID = #{topId}
+		</if>		
+	</select>
+	
+	<insert id= "insertTopCategory" parameterType="com.musinsa.category.domain.TopCategoryDTO">
+		INSERT INTO TOP_CATEGORY (
+			 TOP_NAME
+			 , CREATOR
+			 , CREATE_DTTM
+			 , UPDATER
+			 , UPDATE_DTTM
+			) VALUES (
+			  #{topName}
+			  , 'SYSTEM'
+			  , PARSEDATETIME (now(),'yyyy-MM-dd hh:mm:ss.SSS')
+			  , 'SYSTEM'
+			  , PARSEDATETIME (now(),'yyyy-MM-dd hh:mm:ss.SSS')
+			)
+	</insert> 
+	
+	
+	
+	<update id= "updateTopCategory" parameterType="com.musinsa.category.domain.TopCategoryDTO">
+		UPDATE TOP_CATEGORY
+		SET TOP_NAME = #{topName}
+			, UPDATER = 'SYSTEM'
+			, UPDATE_DTTM = PARSEDATETIME (now(),'yyyy-MM-dd hh:mm:ss.SSS')
+		WHERE TOP_ID = #{topId}
+	</update>
+	
+	
+	<delete id= "deleteTopCategory" parameterType="long">
+		DELETE FROM TOP_CATEGORY
+		WHERE TOP_ID = #{topId}
+	</delete>
+	
+</mapper>
