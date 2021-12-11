@@ -39,9 +39,11 @@
 	
 	<update id= "updateTopCategory" parameterType="com.musinsa.category.domain.TopCategoryDTO">
 		UPDATE TOP_CATEGORY
-		SET TOP_NAME = #{topName}
-			, UPDATER = 'SYSTEM'
+		SET UPDATER = 'SYSTEM'
 			, UPDATE_DTTM = PARSEDATETIME (now(),'yyyy-MM-dd hh:mm:ss.SSS')
+			<if test="topName != null or topName != ''" >
+			, TOP_NAME = #{topName}
+			</if>
 		WHERE TOP_ID = #{topId}
 	</update>
 	

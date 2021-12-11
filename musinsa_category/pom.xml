@@ -77,6 +77,14 @@
 		    <artifactId>log4j-jdbc-dbcp2</artifactId>
 		    <version>2.15.0</version>
 		</dependency>
+		
+			<!-- https://mvnrepository.com/artifact/org.springframework.restdocs/spring-restdocs-mockmvc -->
+		<dependency>
+		    <groupId>org.springframework.restdocs</groupId>
+		    <artifactId>spring-restdocs-mockmvc</artifactId>
+		    <version>2.0.5.RELEASE</version>
+		    <scope>test</scope>
+		</dependency>
 			
 	</dependencies>
 	
