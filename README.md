@@ -300,7 +300,6 @@ __현재 구성된 cotroller 별 REST API 구성__
   #PUT
   	curl -X PUT -H "Content-Type: application/json; charset=utf-8" -d '{"topName" : "update_category"}' http://localhost:8080/top-category/6
   	
-  	
   #DELETE
   	curl -X DELETE http://localhost:8080/top-category/6
   ```
