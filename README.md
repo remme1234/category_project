@@ -31,7 +31,7 @@
 
 ---
 
-![category_erd](C:\Users\vlwys\Desktop\category_erd.png)
+![category_erd](readme_file/category_erd.png)
 
 - 아래의 내용을 담은 테이블을 구성했습니다.
 
