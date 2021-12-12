@@ -1,6 +1,17 @@
-# category_project
+# Category_project
 
 
+
+### 개요
+
+---
+
+상품 카테고리를 Spring-boot를 이용하여 구현했습니다.
+
+작동여부는 [REST API 구성](#REST-API-구성)과 [Linux 환경에서 REST API 테스트 방법](#Linux-환경에서-REST-API-테스트-방법)을 참고하시면 커맨드라인에서 테스트 가능합니다.
+
+<br/>
+<br/>
 
 ### 개발환경
 
