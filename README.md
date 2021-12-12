@@ -22,7 +22,7 @@
 2. [기본 프로그램 설치](#기본-프로그램-설치)
 3. [프로젝트 빌드](#프로젝트-빌드)
 4. [REST API 구성](#REST-API-구성)
-5. [linux 환경에서 REST API 테스트 방법](#linux 환경에서-REST-API-테스트-방법)
+5. [Linux 환경에서 REST API 테스트 방법](#Linux 환경에서-REST-API-테스트-방법)
 6. [Junit sample code](#Junit-sample-code)
 
 
